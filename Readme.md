@@ -1,64 +1,124 @@
-# Overview
+<p align="center">
+  <img src="https://d112y698adiu2z.cloudfront.net/photos/production/software_photos/004/132/995/datas/small.png" alt="ECHO Logo" width="150">
+</p>
 
-Speak Africa is a voice translation application focused on bidirectional translation between English and Kinyarwanda. The app provides speech-to-text transcription, text translation, and text-to-speech functionality through a modern web interface. It's designed as a mobile-first PWA with an African-themed UI and stores translation history for easy reference.
+<h1 align="center">ECHO</h1>
 
-# User Preferences
+<p align="center">
+  <strong>Translating your words. Preserving your voice.</strong>
+  <br />
+  <br />
+  <a href="https://letusecho.com"><strong>View Demo »</strong></a>
+  <br />
+  <br />
+  <img src="https://img.shields.io/badge/license-MIT-blue.svg" alt="License">
+  <img src="https://img.shields.io/badge/status-active-success.svg" alt="Status">
+</p>
 
-Preferred communication style: Simple, everyday language.
+---
 
-# System Architecture
+## About The Project
 
-## Frontend Architecture
-The client uses React with TypeScript and follows a component-based architecture. The UI is built with Tailwind CSS and shadcn/ui components for consistent styling. Routing is handled by Wouter for lightweight navigation. The app uses TanStack Query for server state management and includes custom hooks for audio recording/playback functionality.
+ECHO is a real-time voice translation application built to break down the communication barriers faced by foreigners in Rwanda. This project was created for the **AI Partner Catalyst Hackathon**, specifically for the **ElevenLabs Challenge**, to create a truly human-centric conversational experience.
 
-Key frontend patterns:
-- Mobile-first responsive design with bottom navigation
-- Custom hooks for audio operations (recording, playback)
-- Form validation using React Hook Form with Zod schemas
-- Component composition with Radix UI primitives
+Our app doesn't just translate words; it translates *personalities*. By integrating **Google's Gemini API** with **ElevenLabs' cutting-edge voice cloning technology**, ECHO allows users to speak in another language while preserving their own unique vocal identity.
 
-## Backend Architecture
-The server uses Express.js with TypeScript in ESM format. It follows a modular service architecture with separate concerns for speech processing, translation, and data storage. The API uses RESTful endpoints with proper error handling and request logging middleware.
+### Key Features
 
-Core backend services:
-- Speech service for audio transcription and synthesis
-- Translation service for text conversion between languages
-- Storage service with both in-memory and database implementations
-- File handling for audio uploads using multer
+| Language Selection | Main Interface | The Magic: Voice Cloning |
+| :---: | :---: | :---: |
+| <img src="https://d112y698adiu2z.cloudfront.net/photos/production/software_photos/004/132/993/datas/small.png" alt="Language Selection Screen" width="250"/> | <img src="https://d112y698adiu2z.cloudfront.net/photos/production/software_photos/004/132/994/datas/small.png" alt="Main Translation Interface" width="250"/> | <img src="https://d112y698adiu2z.cloudfront.net/photos/production/software_photos/004/132/991/datas/small.png" alt="Translation Settings" width="250"/> |
+| Choose your source and target languages. | A clean, minimalist interface for easy translation. | Our settings panel where users can record a sample to clone their voice. |
 
-## Data Storage Solutions
-The application uses a dual storage approach:
-- PostgreSQL database with Drizzle ORM for production data persistence
-- In-memory storage implementation for development/testing
-- Shared schema definitions using Drizzle-Zod for type safety
-- Database migrations managed through Drizzle Kit
+---
 
-## Authentication and Authorization
-Currently implements basic request validation without complex authentication. The system is designed to be extended with proper user authentication and session management as needed.
+### Built With
 
-# External Dependencies
+Our application is a powerful synergy between Google's AI and ElevenLabs, built as a mobile-first Progressive Web App (PWA).
 
-## Database Services
-- **PostgreSQL**: Primary database using Neon serverless for cloud deployment
-- **Drizzle ORM**: Type-safe database queries and migrations
-- **connect-pg-simple**: Session store for PostgreSQL
+*   **Frontend:** [React](https://reactjs.org/), [TypeScript](https://www.typescriptlang.org/), [Tailwind CSS](https://tailwindcss.com/)
+*   **Backend:** [Node.js](https://nodejs.org/), [Express.js](https://expressjs.com/)
+*   **Database:** [PostgreSQL](https://www.postgresql.org/)
+*   **AI & APIs:**
+    *   **Google Gemini API:** For core Speech-to-Text and Text-to-Text translation.
+    *   **ElevenLabs API:** For hyper-realistic Text-to-Speech and our breakthrough Voice Cloning feature.
 
-## AI Services
-- **Google Gemini API**: Unified pipeline for speech-to-text transcription, text translation, and text-to-speech synthesis for both English and Kinyarwanda
+---
 
-## UI and Styling
-- **Tailwind CSS**: Utility-first styling framework
-- **Radix UI**: Headless component primitives
-- **shadcn/ui**: Pre-built component library
-- **Lucide React**: Icon library
+## Getting Started
 
-## Audio Processing
-- **Web Audio APIs**: Browser-native audio recording and playback
-- **MediaRecorder API**: Audio capture functionality
-- **Custom audio utilities**: Wrapper classes for recording and playback
+To get a local copy up and running, follow these simple steps.
 
-## Development Tools
-- **Vite**: Frontend build tool and development server
-- **TypeScript**: Type safety across frontend and backend
-- **ESBuild**: Backend bundling for production deployment
-- **Replit plugins**: Development environment integration
+### Prerequisites
+
+*   Node.js (v18 or later)
+*   npm or yarn
+*   A PostgreSQL database instance
+
+### Installation
+
+1.  **Clone the repo**
+    ```sh
+    git clone https://github.com/your_username/echo.git
+    ```
+
+2.  **Setup the Backend (`/server`)**
+    ```sh
+    cd server
+    npm install
+    ```
+    Create a `.env` file in the `/server` directory and add the following variables:
+    ```env
+    PORT=3001
+    DATABASE_URL="your_postgresql_connection_string"
+    GEMINI_API_KEY="your_google_gemini_api_key"
+    ELEVENLABS_API_KEY="your_elevenlabs_api_key"
+    ```
+    Start the backend server:
+    ```sh
+    npm start
+    ```
+
+3.  **Setup the Frontend (`/client`)**
+    In a new terminal, navigate to the client directory:
+    ```sh
+    cd client
+    npm install
+    ```
+    Create a `.env` file in the `/client` directory and add the backend API URL:
+    ```env
+    VITE_API_BASE_URL="http://localhost:3001"
+    ```
+    Start the frontend development server:
+    ```sh
+    npm run dev
+    ```
+    Your application should now be running on `http://localhost:5173` (or another port if specified).
+
+---
+
+## Usage
+
+1.  **Create an Account:** Sign up for a new account.
+2.  **Clone Your Voice:** Navigate to `Settings` -> `Clone Your Voice` and record a 10-30 second audio sample.
+3.  **Select Languages:** Choose your source and target languages (e.g., English to Kinyarwanda).
+4.  **Translate:** Tap and hold the microphone button to speak. The app will play back the translation in your cloned voice!
+
+---
+
+## Hackathon Submission
+
+This project was built for the **AI Partner Catalyst** hackathon on Devpost, competing in the **ElevenLabs Challenge**. Our goal was to push the boundaries of what a "conversational" AI could be by creating a deeply personal and human-centric experience.
+
+---
+
+## License
+
+Distributed under the MIT License. See `LICENSE` for more information.
+
+---
+
+## Acknowledgments
+*   The [Devpost](https://devpost.com/) team for organizing the hackathon.
+*   [Google](https://cloud.google.com/) for their powerful Gemini models.
+*   [ElevenLabs](https://elevenlabs.io/) for their incredible voice generation technology.
